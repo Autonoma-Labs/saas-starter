@@ -125,6 +125,10 @@ const config: HandlerConfig = {
   sharedSecret: process.env.AUTONOMA_SHARED_SECRET!,
   // Signs the refs token the SDK hands back; Autonoma never sees it.
   signingSecret: process.env.AUTONOMA_SIGNING_SECRET!,
+  // Deployed test targets run as NODE_ENV=production; the SDK blocks the
+  // factory there unless this is set. Note: teardown deletes rows, so this
+  // must only point at a disposable test database.
+  allowProduction: true,
   factories: {
     users: usersFactory,
     teams: teamsFactory,
